@@ -1,0 +1,102 @@
+@import '@fontsource/playfair-display/400-italic.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/playfair-display/800.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/barlow-condensed/500.css';
+@import '@fontsource/barlow-condensed/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-carbon-950 font-sans text-crema-50 antialiased;
+  }
+  ::selection {
+    background: rgb(232 89 12 / 0.85);
+    color: #0c0a09;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-brasa-400;
+  }
+}
+
+/* Dorado mate de la marca (#C9974A) */
+@layer utilities {
+  .text-dorado {
+    color: #c9974a;
+  }
+  .bg-dorado {
+    background-color: #c9974a;
+  }
+  .border-dorado {
+    border-color: #c9974a;
+  }
+  .border-dorado-soft {
+    border-color: rgb(201 151 74 / 0.35);
+  }
+  .text-shadow-soft {
+    text-shadow: 0 2px 28px rgb(0 0 0 / 0.55);
+  }
+}
+
+@layer components {
+  /* Barras de parrilla que se desvanecen hacia arriba */
+  .hero-grate {
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgb(251 246 236 / 0.07) 0 2px,
+      transparent 2px 36px
+    );
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 70%);
+    mask-image: linear-gradient(to top, #000 0%, transparent 70%);
+  }
+
+  /* Calor de las brasas al pie y halo tenue tras el título */
+  .hero-glow {
+    background:
+      radial-gradient(60% 45% at 50% 108%, rgb(232 89 12 / 0.38), transparent 70%),
+      radial-gradient(35% 30% at 88% 100%, rgb(201 151 74 / 0.18), transparent 70%),
+      radial-gradient(45% 50% at 28% 45%, rgb(232 89 12 / 0.09), transparent 70%);
+  }
+
+  /* Grano fino para dar textura al carbón */
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+  }
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-glow {
+  animation: glow-breathe 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
